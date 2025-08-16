@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Accueil from './pages/Accueil';
 import Login from './pages/Login';
-import Admin from './pages/Admin';
+import Admin from "./pages/Admin/Admin.jsx";
 import Register from './pages/Register';
 
 function App() {

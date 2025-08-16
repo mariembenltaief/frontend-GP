@@ -27,6 +27,7 @@ export default function Login() {
         setError('Email ou mot de passe incorrect');
         return;
       }
+      
 
       localStorage.setItem('token', token);
 
@@ -45,6 +46,7 @@ export default function Login() {
       setError('Erreur lors de la connexion');
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
