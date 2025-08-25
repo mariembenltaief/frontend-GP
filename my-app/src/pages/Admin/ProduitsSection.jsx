@@ -73,7 +73,6 @@ export default function ProduitsSection() {
     <div>
       <div className="flex justify-between mb-4">
         <h2 className="text-2xl font-bold">Produits</h2>
-        <button type="button" onClick={() => setShowAddModal(true)} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">➕ Ajouter</button>
       </div>
 
       <input
@@ -91,6 +90,7 @@ export default function ProduitsSection() {
             <th>Description</th>
             <th>Prix</th>
             <th>Quantité</th>
+            <th>image</th>
             <th>Statut</th>
             <th>Actions</th>
           </tr>
@@ -102,10 +102,12 @@ export default function ProduitsSection() {
               <td>{p.description}</td>
               <td>{p.prix} €</td>
               <td>{p.quantiteStock}</td>
+              <td>http://localhost:5000/${p.image}</td>
               <td>{p.statutProduit}</td>
               <td className="flex gap-2 p-2">
                 <button type="button" onClick={() => { setCurrentProduit(p); setShowEditModal(true); }} className="bg-yellow-500 text-white px-2 py-1 rounded">✏️</button>
                 <button type="button" onClick={() => handleDelete(p._id)} className="bg-red-600 text-white px-2 py-1 rounded">🗑️</button>
+                
               </td>
             </tr>
           ))}
@@ -114,23 +116,7 @@ export default function ProduitsSection() {
 
       <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
 
-      {/* Add Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-4 rounded w-96">
-            <h3 className="text-xl font-bold mb-2">Ajouter un produit</h3>
-            <input className="border p-2 mb-2 w-full" placeholder="Nom" value={currentProduit.nom} onChange={e => setCurrentProduit({ ...currentProduit, nom: e.target.value })}/>
-            <input className="border p-2 mb-2 w-full" placeholder="Description" value={currentProduit.description} onChange={e => setCurrentProduit({ ...currentProduit, description: e.target.value })}/>
-            <input type="number" className="border p-2 mb-2 w-full" placeholder="Prix" value={currentProduit.prix} onChange={e => setCurrentProduit({ ...currentProduit, prix: e.target.value })}/>
-            <input type="number" className="border p-2 mb-2 w-full" placeholder="Quantité" value={currentProduit.quantiteStock} onChange={e => setCurrentProduit({ ...currentProduit, quantiteStock: e.target.value })}/>
-            <div className="flex justify-end gap-2">
-              <button type="button" onClick={handleAdd} className="bg-green-600 text-white px-4 py-2 rounded">Ajouter</button>
-              <button type="button" onClick={() => setShowAddModal(false)} className="px-4 py-2 rounded border">Annuler</button>
-            </div>
-          </div>
-        </div>
-      )}
-
+     
       {/* Edit Modal */}
       {showEditModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
